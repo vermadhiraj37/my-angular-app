@@ -17,16 +17,23 @@ stages:
     - script: |
         npm install
         npm run build -- --configuration production
-      displayName: 'npm install and build'
+        mkdir deploy
+        cp -r dist deploy/dist
+        cp server.js deploy/
+        cp package.json deploy/
+        cp package-lock.json deploy/
+        cd deploy
+        npm install --omit=dev
+      displayName: 'npm install, build, and prepare deploy package'
  
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/my-angular-app/browser'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/deploy'
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: true
-      displayName: 'Archive build output'
+      displayName: 'Archive deploy package'
  
     - task: PublishBuildArtifacts@1
       inputs:
