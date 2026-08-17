@@ -54,7 +54,7 @@ stages:
       displayName: 'Download artifact'
  
     - script: |
-        curl -X POST \
+        curl -4 -X POST \
           -u "$(DeployUsername):$(DeployPassword)" \
           --data-binary @"$(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip" \
           "https://$(webAppName).scm.azurewebsites.net/api/zipdeploy"
