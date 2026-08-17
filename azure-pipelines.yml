@@ -57,6 +57,7 @@ stages:
  
           - task: AzureWebApp@1
             inputs:
+              connectionType: 'PublishProfile'
               appName: '$(webAppName)'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               publishProfilePath: '$(publishProfile.secureFilePath)'
