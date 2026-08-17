@@ -59,7 +59,7 @@ stages:
  
     - script: |
         curl -4 -X POST \
-          -u "$(DeployUsername):$(DeployPassword)" \
+          -u "$(DeployUsername):$(DeployPasswordd)" \
           --data-binary @"$(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip" \
           "https://my-angular-app-dhiraj-baenendvhebdeaba.scm.centralindia-01.azurewebsites.net/api/zipdeploy"
       displayName: 'Deploy via Kudu ZipDeploy'
