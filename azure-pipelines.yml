@@ -4,9 +4,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
  
-variables:
-  webAppName: 'my-angular-app-dhiraj'
- 
 stages:
 - stage: Build
   jobs:
@@ -57,6 +54,6 @@ stages:
         curl -4 -X POST \
           -u "$(DeployUsername):$(DeployPassword)" \
           --data-binary @"$(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip" \
-          "https://$(webAppName).scm.azurewebsites.net/api/zipdeploy"
+          "https://my-angular-app-dhiraj-baenendvhebdeaba.scm.centralindia-01.azurewebsites.net/api/zipdeploy"
       displayName: 'Deploy via Kudu ZipDeploy'
  
