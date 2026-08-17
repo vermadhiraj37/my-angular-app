@@ -45,16 +45,20 @@ stages:
     environment: 'production'
     pool:
       vmImage: 'ubuntu-latest'
-    variables:
-    - group: AngularDeploySecrets
     strategy:
       runOnce:
         deploy:
           steps:
+          - task: DownloadSecureFile@1
+            name: publishProfile
+            inputs:
+              secureFile: 'my-angular-app-dhiraj.PublishSettings'
+            displayName: 'Download publish profile'
+ 
           - task: AzureWebApp@1
             inputs:
               appName: '$(webAppName)'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              publishProfile: '$(AzurePublishProfile)'
+              publishProfilePath: '$(publishProfile.secureFilePath)'
             displayName: 'Deploy to Azure Web App'
  
