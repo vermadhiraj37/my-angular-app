@@ -44,7 +44,7 @@ stages:
   - deployment: DeployWebApp
     environment: 'production'
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-latest'
     strategy:
       runOnce:
         deploy:
