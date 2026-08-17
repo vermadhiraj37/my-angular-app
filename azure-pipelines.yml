@@ -59,6 +59,7 @@ stages:
             inputs:
               ConnectionType: 'PublishProfile'
               PublishProfilePath: '$(publishProfile.secureFilePath)'
+              PublishProfilePassword: '$(PublishProfilePassword)'
               WebAppName: '$(webAppName)'
               Package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
             displayName: 'Deploy to Azure Web App'
