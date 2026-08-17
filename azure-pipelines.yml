@@ -55,11 +55,11 @@ stages:
               secureFile: 'my-angular-app-dhiraj.PublishSettings'
             displayName: 'Download publish profile'
  
-          - task: AzureWebApp@1
+          - task: AzureRmWebAppDeployment@4
             inputs:
-              connectionType: 'PublishProfile'
-              appName: '$(webAppName)'
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              publishProfilePath: '$(publishProfile.secureFilePath)'
+              ConnectionType: 'PublishProfile'
+              PublishProfilePath: '$(publishProfile.secureFilePath)'
+              WebAppName: '$(webAppName)'
+              Package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
             displayName: 'Deploy to Azure Web App'
  
